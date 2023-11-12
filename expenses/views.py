@@ -3,9 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.shortcuts import render
-from .models import Expense
+from .models import Transaction
 
 def expense_list(request):
-    expenses = Expense.objects.all()
+    expenses = Transaction.objects.all()
     return render(request, 'expenses/expense_list.html', {'expenses': expenses})
 
