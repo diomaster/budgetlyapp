@@ -2,12 +2,18 @@
 <html>
 <head>
     <title>Expense List</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
     <h1>Expense List</h1>
     <ul>
         {% for expense in expenses %}
-            <li>{{ expense.description }} - {{ expense.amount }}</li>
+            <li class="form-control">{{ expense.amount }}</li>
+            <li class="form-control">{{ expense.description }} </li>
+            <li class="form-control">{{ expense.date }} </li>
+
         {% endfor %}
     </ul>
 </body>
