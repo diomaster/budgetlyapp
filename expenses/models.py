@@ -1,6 +1,12 @@
 from django.db import models
-
 # Create your models here.
+
+class Report(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
 
 class AccountInfo(models.Model):
     username = models.CharField(max_length=20)
@@ -24,7 +30,7 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     planned = models.FloatField(max_length=15)
-    recieved = models.FloatField(max_length=15)
+    received = models.FloatField(max_length=15)
 
     def str(self):
         return self.name
