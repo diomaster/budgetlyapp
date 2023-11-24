@@ -27,6 +27,11 @@
     }
 }
 
+.transaction-row {
+    display: flex;
+    align-items: center;
+}
+
 .transaction-button-link {
     text-decoration: none;
     text-align: center;

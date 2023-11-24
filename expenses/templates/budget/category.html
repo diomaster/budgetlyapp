@@ -9,16 +9,35 @@
         <p class="new-category-button">Add New Category</p>
     </a>
 </div>
-
+{% for category in categories %}
 <div class="category-card-container">
     <div class="category-card-top-section">
-        <p class="category-card-title-text">Category Title</p>
+        <p class="category-card-title-text">{{ category.name }}</p>
         <a href="#">
             <img src="{% static 'expenses/images/trash.svg' %}">
         </a>
     </div>
     <div class="category-card-table-info">
-
+        <div class="transactions-table category-table-container">
+            <div class="transactions-table-header">
+                <div class="table-cell">Title</div>
+                <div class="table-cell">Planned</div>
+                <div class="table-cell">Received</div>
+            </div>
+            <hr class="horizontal-rule">
+            {% for transaction in transactions %}
+            <div class="transaction-row">
+                <div class="table-cell">{{transaction.item}}</div>
+                <div class="table-cell">{{transaction.date}}</div>
+                <div class="table-cell">{{transaction.amount}}</div>
+                <div class="table-cell">        
+                    <a href="#">
+                        <img src="{% static 'expenses/images/edit.svg' %}">
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
     <div class="category-card-bottom-section">
         <div class="category-add-item-button-container">
@@ -28,4 +47,5 @@
         </div>
     </div>
 </div>
+{% endfor %}
 {% endblock %}
