@@ -78,16 +78,15 @@
 
 /* Active state for sub-nav link */
 .sub-nav a.active {
-  color: #ffffff; /* White text color for active tab */
-  background-color: #101C40; /* Dark blue background for active tab */
-   /* Rounded corners for tabs */
+  color: #ffffff; 
+  background-color: #101C40; 
 }
 
 /* Hover state for sub-nav link */
 .sub-nav a:hover {
-  background-color: #e1e1e1; /* Light grey background for hover state */
-  color: #0E62B8; /* Dark blue text color for hover state */
-   /* Consistent rounded corners */
+  background-color: #e1e1e1; 
+  color: #0E62B8; 
+   
 }
 
 

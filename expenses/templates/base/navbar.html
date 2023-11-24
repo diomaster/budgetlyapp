@@ -18,7 +18,7 @@
 </nav>
 <!-- Sub-navigation menu -->
 <div class="sub-nav">
-    <a href="{% url 'expense_list' %}" {% if request.resolver_match.url_name == 'Category' %}class="active"{% endif %}>Category</a>
+    <a href="{% url 'expense_list' %}" {% if request.resolver_match.url_name == 'expense_list' %}class="active"{% endif %}>Category</a>
     <a href="{% url 'transactions' %}" {% if request.resolver_match.url_name == 'transactions' %}class="active"{% endif %}>Transactions</a>
     <a href="{% url 'reports' %}" {% if request.resolver_match.url_name == 'reports' %}class="active"{% endif %}>Reports</a>
   </div>
