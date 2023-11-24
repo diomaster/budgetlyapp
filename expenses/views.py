@@ -110,6 +110,7 @@ def reports_view(request):
 
 def transactions_view(request):
     transactions = Transaction.objects.all()
-    return render(request, 'transactions.html', {'transactions': transactions})
+    return render(request, 'budget/transactions.html', {'transactions': transactions})
+
 
 

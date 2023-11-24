@@ -1,7 +1,35 @@
 {% load static %}
-<nav>
-    <p>B U D G E T L Y</p>
-    <a href="#">
+
+<nav class="navbar">
+    <div class="logo">B U D G E T L Y</div>
+    <div class="hamburger-menu" onclick="toggleMenu()">
         <img src="{% static 'expenses/images/hamburger.svg' %}" class="nav-menu-img">
-    </a>
+    </div>
+    <div class="nav-links" id="navLinks">
+        <a href="#" class="close-nav" onclick="toggleMenu()">×</a>
+        <a href="#">Budget</a>
+        <a href="{% url 'transactions' %}">Transactions</a>
+        <a href="{% url 'reports' %}">Reports</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="#">Link Bank Account</a>
+        <a href="#">Daily Spending Limit</a>
+        <a href="{% url 'logout' %}" class="logout">Logout</a>
+    </div>
 </nav>
+<!-- Sub-navigation menu -->
+<div class="sub-nav">
+    <a href="{% url 'expense_list' %}" {% if request.resolver_match.url_name == 'Category' %}class="active"{% endif %}>Category</a>
+    <a href="{% url 'transactions' %}" {% if request.resolver_match.url_name == 'transactions' %}class="active"{% endif %}>Transactions</a>
+    <a href="{% url 'reports' %}" {% if request.resolver_match.url_name == 'reports' %}class="active"{% endif %}>Reports</a>
+  </div>
+  
+<script>
+    function toggleMenu() {
+        var navLinks = document.getElementById("navLinks");
+        if (navLinks.style.display === "block") {
+            navLinks.style.display = "none";
+        } else {
+            navLinks.style.display = "block";
+        }
+    }
+</script>
