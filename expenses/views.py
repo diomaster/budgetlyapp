@@ -22,12 +22,12 @@ def login_view(request):
         else:
             messages.error(request, 'Invalid login. Please try again.')
 
-    return render(request, 'budget/login/login.html')
+    return render(request, 'budget/login.html')
 
 def logout_view(request):
     logout(request)
     messages.success(request, 'Logout is successful Thanks for using Budgetly')
-    return redirect('budget/login/profile.html')
+    return redirect('budget/profile.html')
 
 def register_view(request):
     if request.method == 'POST':
@@ -36,14 +36,14 @@ def register_view(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account successfully created your username is {username}. Welcome.')
-            return redirect('budget/login/profile.html')
+            return redirect('budget/profile.html')
         else:
             form = RegistrationForm()
 
-        return render(request, 'budget/login/Register.html', {'form': form})
+        return render(request, 'budget/Register.html', {'form': form})
 
 def profile_view(request):
-    return render(request, 'budget/login/profile.html')
+    return render(request, 'budget/profile.html')
 
 def add_category_view(request):
     if request.method == 'POST':
