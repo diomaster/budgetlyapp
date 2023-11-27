@@ -69,8 +69,9 @@ def add_transaction_view(request):
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
-         form.save()
-        return redirect('budget/transactions.html')    
+            form.save()
+            messages.success(request, 'Transaction added successfully!')
+            return redirect('transactions')  # Make sure 'transactions_view' is the name of the URL pattern where you list transactions
     else:
         form = TransactionForm()
     return render(request, 'budget/addtransaction.html', {'form': form})

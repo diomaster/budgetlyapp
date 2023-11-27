@@ -103,9 +103,11 @@
   border-bottom: 1px solid #4F5B69;
 }
 
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .transaction-button {
     width: auto;
   }
 }
+
