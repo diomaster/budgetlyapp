@@ -6,10 +6,7 @@ from .models import Transaction, Category, Item, AccountInfo, Report
 from .forms import RegistrationForm, TransactionForm, CategoryForm, ItemForm
 # Create your views here.
 
-from django.shortcuts import render
-from .models import Transaction
-
-def login_view(request):
+def login_view(request):   
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -18,11 +15,12 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Login Successful, Welcome!')
-            return redirect('profile_view')  # Use the correct URL name
+            return redirect('/budget/category/')  # Use the correct URL name
         else:
-            messages.error(request, 'Invalid login. Please try again.')
-
-    return render(request, 'budget/login.html')
+            messages.success(request, 'Invalid login. Please try again.')
+           
+    
+    return render(request, 'budget/login.html', {})
 
 def logout_view(request):
     logout(request)

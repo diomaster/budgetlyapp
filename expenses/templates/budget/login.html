@@ -1,6 +1,56 @@
 {% extends "../base/base.html" %}
-{% csrf_token %}
+{% load static %}
 
 {% block template %}
+
 <!--CODE HERE-->
+
+
+    <h1 class="logo navbar" style="display: flex;
+    justify-content: center;
+    align-items: center;" >
+    B U D G E T L Y</h1>
+
+    <div class="category-card-container form-body">
+        <div class="transactions-table category-table-container " style="display: flex;
+        justify-content: center;
+        align-items: center;">
+          
+            <div class="form-header" >
+                <h2>Sign In</h2>
+              </div>
+        </div>
+  
+    <form action="" method="post">
+      
+    {% csrf_token %}
+    <div class="form-body" style="display: flex; justify-content: center; align-items: center;">
+        <p>Username</p>
+        <div class="form-field"></div>
+        <label for="username" style="padding: 1rem;"></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+      </div>
+      <div class="form-field" style="display: flex; justify-content: center; align-items: center;">
+        <p>Password</p>
+        <label for="password" style="padding: 1rem; "></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center;">
+          <button type="submit" class="new-category-button">
+              <p style="margin:0; padding:0; ">Sign In</p>
+          </button>
+      </div>
+    </div>
+      
+   
+    </form>
+ 
+</div>
+<div class="" style="display: flex; justify-content: center; align-items: center;">
+    <p style="color: white; ">Don't have an account? </p>  </div> <div class="" style="display: flex;
+    justify-content: center;
+    align-items: center;">  
+    <a href="{% url 'register' %}" class="" style=" color:#528DFF">Create an Account</a>
+</div>
+
 {% endblock %}

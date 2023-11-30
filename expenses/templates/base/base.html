@@ -8,7 +8,15 @@
     <link rel="stylesheet" href="{% static 'expenses/main.css' %}">
 </head>
 <body>
+<p style="color: white; ">
+{% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endif %}
+</p>
     {% block template %}
+   
     {% endblock %}
 </body>
 </html>
