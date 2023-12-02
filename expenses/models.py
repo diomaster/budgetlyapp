@@ -1,5 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group, Permission
-from django.db import models 
+from django.db import models
 # Create your models here.
 
 class Report(models.Model):
@@ -9,19 +8,14 @@ class Report(models.Model):
     def __str__(self):
         return self.title
 
-
-class AccountInfo(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=20, unique=True)
-    email = models.EmailField(unique=True)
+class AccountInfo(models.Model):
+    username = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
+    email = models.EmailField()
 
-    USERNAME_FIELD = 'username'
-
-    groups = models.ManyToManyField(Group, related_name='accountinfo_set', blank=True)
-    user_permissions = models.ManyToManyField(Permission, related_name='accountinfo_set', blank=True)
-
-    def __str__(self):
+    def str(self):
         return self.username
     
 

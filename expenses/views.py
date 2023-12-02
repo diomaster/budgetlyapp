@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Transaction, Category, Report
+from .models import Transaction, Category, Item, AccountInfo, Report
 from .forms import RegistrationForm, TransactionForm, CategoryForm, ItemForm
 # Create your views here.
 
@@ -33,12 +33,12 @@ def register_view(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account successfully created. Your username is {username}. Welcome.')
+            messages.success(request, f'Account successfully created your username is {username}. Welcome.')
             return redirect('budget/profile.html')
-    else:
-        form = RegistrationForm()  
+        else:
+            form = RegistrationForm()
 
-    return render(request, 'budget/Register.html', {'form': form})
+        return render(request, 'budget/Register.html', {'form': form})
 
 def profile_view(request):
     return render(request, 'budget/profile.html')
