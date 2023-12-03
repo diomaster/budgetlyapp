@@ -4,4 +4,59 @@
 
 {% block template %}
 <!--CODE HERE-->
+
+<h1 class="logo navbar" style="display: flex;
+    justify-content: center;
+    align-items: center;" >
+    B U D G E T L Y</h1>
+
+    <div class="category-card-container form-body">
+        <div class="transactions-table category-table-container " style="display: flex;
+        justify-content: center;
+        align-items: center;">
+          
+            <div class="form-header" >
+                <h2>Create An Account</h2>
+              </div>
+        </div>
+  
+    <form action="{% url 'expenses:register' %}" method="post">
+      
+    {% csrf_token %}
+    <div class="form-body" style="display: flex; justify-content: center; align-items: center;">
+        <p>Username</p>
+        <div class="form-field"></div>
+        <label for="username" style="padding: 1rem;"></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+      </div>
+      <div class="form-field" style="display: flex; justify-content: center; align-items: center;">
+        <p>Email</p>
+        <label for="email" style="padding: 1.9rem; "></label>
+        <input type="email" placeholder="Enter email" name="email" required>
+      </div>
+      <div class="form-field" style="display: flex; justify-content: center; align-items: center;">
+        <p>Password</p>
+        <label for="password" style="padding: 1.1rem; "></label>
+        <input type="password" placeholder="Enter Password" name="password1" required>
+      </div>
+      <div class="form-field" style="display: flex; justify-content: center; align-items: center;">
+        <p style="position: relative; right: 10px;">Same Password</p>
+        <label for="password"></label>
+        <input type="password" placeholder="Enter Same Password" name="password2" required>
+      </div>
+      
+      <div style="display: flex; justify-content: center; align-items: center;">
+          <button type="submit" class="new-category-button">
+              <p style="margin:0; padding:0; ">Register</p>
+          </button>
+      </div>
+    </div>
+    <div class="" style="display: flex; justify-content: center; align-items: center;">
+        <p style="color: white; ">Already Have an account? Click here to log in </p>  </div> <div class="" style="display: flex;
+        justify-content: center;
+        align-items: center;">  
+        <a href="{% url 'expenses:login' %}" class="" style=" color:#528DFF">Log In</a>
+    </div>
+   
+    </form>
 {% endblock %}

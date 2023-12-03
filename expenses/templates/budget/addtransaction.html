@@ -3,7 +3,7 @@
 {% block template %}
 {% include "../base/navbar.html" %}
 <div class="add-transaction-container">
-    <form method="post" action="{% url 'add_transaction' %}" novalidate>
+    <form method="post" action="{% url 'expenses:add_transaction' %}" novalidate>
       {% csrf_token %}
       <div class="form-header">
         <h2>Add Transaction</h2>
