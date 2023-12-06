@@ -60,8 +60,8 @@
   background-color: #ffffff; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
   width: 80%;
-  margin: 0 auto; /* Centers the sub-nav */
-  
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 /* Sub-nav link styles */

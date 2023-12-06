@@ -5,7 +5,7 @@
 <h1 class="page-header-title">Your Categories</h1>
 <hr class="category-horizontal-rule">
 <div class="new-category-button-container">
-    <a href="#" class="new-category-button-link">
+    <a class="new-category-button-link" href="{% url 'expenses:add_category' %}">
         <p class="new-category-button">Add New Category</p>
     </a>
 </div>
@@ -25,11 +25,11 @@
                 <div class="table-cell">Received</div>
             </div>
             <hr class="horizontal-rule">
-            {% for transaction in transactions %}
+            {% for i in items %}
             <div class="transaction-row">
-                <div class="table-cell">{{transaction.item}}</div>
-                <div class="table-cell">{{transaction.date}}</div>
-                <div class="table-cell">{{transaction.amount}}</div>
+                <div class="table-cell">{{i.name}}</div>
+                <div class="table-cell">{{i.planned}}</div>
+                <div class="table-cell">{{i.received}}</div>
                 <div class="table-cell">        
                     <a href="#">
                         <img src="{% static 'expenses/images/edit.svg' %}">
@@ -41,7 +41,7 @@
     </div>
     <div class="category-card-bottom-section">
         <div class="category-add-item-button-container">
-            <a href="#" class="category-add-item-button-link">
+            <a href="{% url 'expenses:add_item' %}" class="category-add-item-button-link">
                 <p class="category-add-item-button-text">Add Item</p>
             </a>
         </div>

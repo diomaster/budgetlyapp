@@ -40,13 +40,12 @@
 <div style="  display: flex;
 justify-content: center;
 align-items: center; margin-top: 3rem; ">
-<img src="{% static 'expenses/images/default.png' %}" alt="Default Image" style="width: 150px; height: 150px; "
-   ></div>
+<img src="{% static 'expenses/images/default.svg' %}" alt="Default Image" style="width: 150px; height: 150px;"></div>
 {%endif%}
    {% if request.user.is_authenticated %}
-<div class="" style="  display: flex;
+<div style="display: flex;
 justify-content: center;
-align-items: center; margin-top: 3rem; "><h1>User: {{request.user}}  </h1></div>
+align-items: center; margin-top: 3rem; "><h1 class="profile-name">User: {{request.user}}  </h1></div>
 {% else %}
 <a href="{% url 'login' %}"><h1 style="  display: flex;
     justify-content: center;

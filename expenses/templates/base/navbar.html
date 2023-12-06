@@ -7,11 +7,10 @@
     </div>
     <div class="nav-links" id="navLinks">
         <a href="#" class="close-nav" onclick="toggleMenu()">×</a>
-        <a href="#">Budget</a>
+        <a href="{% url 'expenses:expense_list' %}">Home</a>
         <a href="{% url 'expenses:transactions' %}">Transactions</a>
         <a href="{% url 'expenses:reports' %}">Reports</a>
         <a href="{% url 'expenses:profile' %}">Profile</a>
-        <a href="#">Link Bank Account</a>
         <a href="#">Daily Spending Limit</a>
         <a href="{% url 'expenses:login' %}" class="logout">Logout</a>
     </div>
