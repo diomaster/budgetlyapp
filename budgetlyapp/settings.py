@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 STATIC_URL = '/static/'
 
+AUTH_USER_MODEL = 'auth.User'
 
 # Application definition
 
@@ -83,6 +84,9 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

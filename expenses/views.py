@@ -2,25 +2,32 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Transaction, Category, Report
-from .forms import RegistrationForm, TransactionForm, CategoryForm, ItemForm
+from .models import Transaction, Category, Report, AccountInfo
+from .forms import RegistrationForm, TransactionForm, CategoryForm, ItemForm, LoginForm
 # Create your views here.
 
-def login_view(request):   
+def login_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
 
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'Login Successful, Welcome!')
-            return redirect('expenses:category') 
+            user = authenticate(request, username=username, password=password)
+            print(f'User: {user}')
+
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Login Successful, Welcome!')
+                return redirect('expenses:category')
+            else:
+                messages.error(request, 'Invalid login. Please try again.')
         else:
-            messages.error(request, 'Invalid login. Please try again.')
-           
-    
-    return render(request, 'budget/login.html', {})
+            messages.error(request, 'Invalid form submission. Please check your input.')
+    else:
+        form = LoginForm()
+
+    return render(request, 'budget/login.html', {'form': form})
 
 def logout_view(request):
     logout(request)
@@ -31,11 +38,16 @@ def register_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account successfully created your username is {username}. Welcome.')
-            print(f'Redirecting to profile for user: {username}')
-            return redirect('expenses:profile')
+            email = form.cleaned_data.get('email')
+
+            # Check if the user with the same username or email already exists
+            if AccountInfo.objects.filter(username=username).exists() or AccountInfo.objects.filter(email=email).exists():
+                messages.error(request, 'Username or email already exists.')
+            else:
+                form.save()
+                messages.success(request, f'Account successfully created. Welcome, {username}.')
+                return redirect('expenses:profile')
         else:
             print('Form is invalid:', form.errors)
     else:

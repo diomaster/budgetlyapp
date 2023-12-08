@@ -6,6 +6,7 @@ from .views import (
     reports_view, transactions_view,
 )
 
+
 app_name = 'expenses'
 
 urlpatterns = [
@@ -22,3 +23,4 @@ urlpatterns = [
     path('budget/reports/', reports_view, name='reports'),
     path('budget/transactions/', transactions_view, name='transactions'),
 ]
+
