@@ -15,9 +15,9 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Login Successful, Welcome!')
-            return redirect('/budget/category/')  # Use the correct URL name
+            return redirect('expenses:category') 
         else:
-            messages.success(request, 'Invalid login. Please try again.')
+            messages.error(request, 'Invalid login. Please try again.')
            
     
     return render(request, 'budget/login.html', {})
@@ -34,11 +34,14 @@ def register_view(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account successfully created your username is {username}. Welcome.')
-            return redirect('budget/profile.html')
+            print(f'Redirecting to profile for user: {username}')
+            return redirect('expenses:profile')
+        else:
+            print('Form is invalid:', form.errors)
     else:
         form = RegistrationForm()
 
-        return render(request, 'budget/Register.html', {'form': form})
+    return render(request, 'budget/Register.html', {'form': form})
 
 def profile_view(request):
     return render(request, 'budget/profile.html')

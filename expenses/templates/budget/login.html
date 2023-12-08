@@ -21,7 +21,7 @@
               </div>
         </div>
   
-    <form action="" method="post">
+    <form action="{% url 'expenses:login' %}" method="post">
       
     {% csrf_token %}
     <div class="form-body" style="display: flex; justify-content: center; align-items: center;">
