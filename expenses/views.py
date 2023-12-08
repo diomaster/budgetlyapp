@@ -47,8 +47,8 @@ def add_category_view(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
-         form.save()
-        return redirect('budget/category.html')    
+            form.save()
+        return redirect('/budget/category/')    
     else:
         form = CategoryForm()
     return render(request, 'budget/addcategory.html', {'form': form})
@@ -58,9 +58,10 @@ def add_item_view(request):
         form = ItemForm(request.POST)
         if form.is_valid():
          form.save()
-        return redirect('budget/category.html')    
+        messages.success(request, 'Item added successfully!')
+        return redirect('/budget/category/')    
     else:
-        form = CategoryForm()
+        form = ItemForm()
     return render(request, 'budget/additem.html', {'form': form})
 
 def add_transaction_view(request):
@@ -69,7 +70,7 @@ def add_transaction_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Transaction added successfully!')
-            return redirect('transactions')  # Make sure 'transactions_view' is the name of the URL pattern where you list transactions
+            return redirect('/budget/transactions/')  # Make sure 'transactions_view' is the name of the URL pattern where you list transactions
     else:
         form = TransactionForm()
     return render(request, 'budget/addtransaction.html', {'form': form})
@@ -85,7 +86,7 @@ def edit_category_view(request, category_id):
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
             form.save()
-            return redirect('budget/category.html')    
+            return redirect('/budget/category/')    
     else:
         form = CategoryForm(instance=category)
     return render(request, 'budget/editcategory.html', {'form': form, 'category': category})
@@ -97,7 +98,7 @@ def edit_transaction_view(request, transaction_id):
         form = TransactionForm(request.POST, instance=transaction)
         if form.is_valid():
             form.save()
-            return redirect('budget/transaction.html')    
+            return redirect('budget/transaction/')    
     else:
         form = TransactionForm(instance=transaction)
     return render(request, 'budget/edittransaction.html', {'form': form, 'transaction': transaction})

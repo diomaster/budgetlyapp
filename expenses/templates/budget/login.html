@@ -4,14 +4,17 @@
 {% block template %}
 
 <!--CODE HERE-->
-
+<div style="display: flex; justify-content: center; align-items: center; margin:1rem; ">
+    <img src="{% static 'expenses/images/logo.svg' %}" alt="Default Image" style="width: 150px; height: 150px;"></div>
+    </div>
 
     <h1 class="logo navbar" style="display: flex;
     justify-content: center;
-    align-items: center;" >
+    align-items: center; margin-bottom: 0; padding-bottom: 0; " >
     B U D G E T L Y</h1>
-
-    <div class="category-card-container form-body">
+    <p style="display: flex; justify-content: center; align-items: center; font-weight:100;  font-size: 1.2rem; margin-top:5px; margin-bottom:40px;   color: white; ">Start Saving Now</p>
+   
+    <div class="category-card-container" style="width: 50%; ">
         <div class="transactions-table category-table-container " style="display: flex;
         justify-content: center;
         align-items: center;">
@@ -24,16 +27,15 @@
     <form action="" method="post">
       
     {% csrf_token %}
-    <div class="form-body" style="display: flex; justify-content: center; align-items: center;">
-        <p>Username</p>
-        <div class="form-field"></div>
-        <label for="username" style="padding: 1rem;"></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
-      </div>
-      <div class="form-field" style="display: flex; justify-content: center; align-items: center;">
-        <p>Password</p>
-        <label for="password" style="padding: 1rem; "></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+   
+    <div class="form-field" style="display: flex; justify-content: center; align-items: center; margin:1rem; "  >
+        <label for="username" style=" padding: 5px;  height: 15px;">Username</label>
+        <input style="padding: .75rem; width:70%; height: 5px; border-radius: 5px; "   type="text" placeholder="Username" name="username" required>
+    </div>
+  
+      <div class="form-field" style="display: flex; justify-content: center; align-items: center; margin: 1rem;  ">
+        <label for="password" style=" padding: 6px;  height: 15px;">Password</label>
+        <input  style="padding: .75rem; width:70%; height: 5px;  border-radius: 5px; " type="password" placeholder="Password" name="password" required>
       </div>
       <div style="display: flex; justify-content: center; align-items: center;">
           <button type="submit" class="new-category-button">
@@ -46,11 +48,11 @@
     </form>
  
 </div>
-<div class="" style="display: flex; justify-content: center; align-items: center;">
+<div class="" style="display: flex; justify-content: center; align-items: center; margin-top: 2rem;">
     <p style="color: white; ">Don't have an account? </p>  </div> <div class="" style="display: flex;
     justify-content: center;
-    align-items: center;">  
-    <a href="{% url 'expenses:register' %}" class="" style=" color:#528DFF">Create an Account</a>
+    align-items: center;  ">  
+    <a href="{% url 'expenses:register' %}" class="" style=" color:#528DFF; text-decoration: none;">Create an Account</a>
 </div>
 
 {% endblock %}

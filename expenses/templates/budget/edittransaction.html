@@ -2,5 +2,25 @@
 {% csrf_token %}
 
 {% block template %}
-<!--CODE HERE-->
+<div class="add-transaction-container">
+    <div class="form-header">
+        <h2>Edit Transaction</h2>
+    </div>
+    <form method="post" action="{% url 'expenses:edit_transaction' %}">
+        {% csrf_token %}
+        <div class="form-body">
+            {% for field in form %}
+              <div class="form-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+               
+                    
+          
+                    {{ field }}
+                
+              </div>
+            {% endfor %}
+          </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
 {% endblock %}
