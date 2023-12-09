@@ -29,9 +29,7 @@ ALLOWED_HOSTS = []
 
 
 
-STATIC_ROOT = BASE_DIR / '/static/'
-
-STATIC_URL = '/static/'
+STATIC_URL = os.path.join(BASE_DIR, '/static/')
 
 AUTH_USER_MODEL = 'auth.User'
 
@@ -128,9 +126,9 @@ USE_TZ = True
 
 STATIC_URL = os.path.join(BASE_DIR, '/static/')
 
-os.makedirs(STATIC_ROOT, exist_ok=True)
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
