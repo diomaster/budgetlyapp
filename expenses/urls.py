@@ -11,7 +11,7 @@ app_name = 'expenses'
 
 urlpatterns = [
     path('', login_view, name='login'),
-    path('budget/category/', category_view, name='expense_list'),
+    path('budget/category/', category_view, name='category'),
     path('budget/logout/', logout_view, name='logout'),
     path('budget/profile/', profile_view, name='profile'),
     path('budget/Register/', register_view, name='register'),

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Transaction, Category, Report, AccountInfo
+from .models import Transaction, Category, Report, AccountInfo, Item
 from .forms import RegistrationForm, TransactionForm, CategoryForm, ItemForm, LoginForm
 # Create your views here.
 
@@ -63,7 +63,7 @@ def add_category_view(request):
         form = CategoryForm(request.POST)
         if form.is_valid():
          form.save()
-        return redirect('budget/category.html')    
+        return redirect('expenses:category')    
     else:
         form = CategoryForm()
     return render(request, 'budget/addcategory.html', {'form': form})
@@ -72,10 +72,12 @@ def add_item_view(request):
     if request.method == 'POST':
         form = ItemForm(request.POST)
         if form.is_valid():
-         form.save()
-        return redirect('budget/category.html')    
+            form.save()
+            return redirect('expenses:category')
+        else:
+            return render(request, 'budget/additem.html', {'form': form})
     else:
-        form = CategoryForm()
+        form = ItemForm()
     return render(request, 'budget/additem.html', {'form': form})
 
 def add_transaction_view(request):
@@ -91,7 +93,8 @@ def add_transaction_view(request):
 
 def category_view(request):
     categories = Category.objects.all()
-    return render(request, 'budget/category.html', {'categories': categories})
+    items = Item.objects.all() 
+    return render(request, 'budget/category.html', {'categories': categories, 'items': items})
 
 def edit_category_view(request, category_id):
     category = Category.objects.get(pk=category_id)
@@ -100,7 +103,7 @@ def edit_category_view(request, category_id):
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
             form.save()
-            return redirect('budget/category.html')    
+            return redirect('expenses:category')    
     else:
         form = CategoryForm(instance=category)
     return render(request, 'budget/editcategory.html', {'form': form, 'category': category})
@@ -112,7 +115,7 @@ def edit_transaction_view(request, transaction_id):
         form = TransactionForm(request.POST, instance=transaction)
         if form.is_valid():
             form.save()
-            return redirect('budget/transaction.html')    
+            return redirect('bexpenses:transaction')    
     else:
         form = TransactionForm(instance=transaction)
     return render(request, 'budget/edittransaction.html', {'form': form, 'transaction': transaction})
