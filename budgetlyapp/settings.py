@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATIC_ROOT = BASE_DIR / '/static/'
+
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'auth.User'
