@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.db.models import Sum
 from .models import Transaction, Category, Report, AccountInfo, Item
 from .forms import RegistrationForm, TransactionForm, CategoryForm, ItemForm, LoginForm
 # Create your views here.
@@ -86,7 +87,7 @@ def add_transaction_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Transaction added successfully!')
-            return redirect('transactions')  # Make sure 'transactions_view' is the name of the URL pattern where you list transactions
+            return redirect('expenses:transactions')  # Make sure 'transactions_view' is the name of the URL pattern where you list transactions
     else:
         form = TransactionForm()
     return render(request, 'budget/addtransaction.html', {'form': form})
@@ -115,14 +116,23 @@ def edit_transaction_view(request, transaction_id):
         form = TransactionForm(request.POST, instance=transaction)
         if form.is_valid():
             form.save()
-            return redirect('bexpenses:transaction')    
+            return redirect('expenses:transactions') 
     else:
         form = TransactionForm(instance=transaction)
+
     return render(request, 'budget/edittransaction.html', {'form': form, 'transaction': transaction})
 
 def reports_view(request):
-    reports = Report.objects.all()
-    return render(request, 'budget/reports.html')
+    
+    transaction_total = Transaction.objects.aggregate(total_expenses=Sum('amount'))['total_expenses'] or 0
+    categories_total = Category.objects.count()
+    items_total = Item.objects.count()
+
+    return render(request, 'budget/reports.html', {
+        'transaction_total': transaction_total,
+        'categories_total': categories_total,
+        'items_total': items_total,
+    })
 
 
 def transactions_view(request):
