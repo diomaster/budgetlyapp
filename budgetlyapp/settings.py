@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1v8l3=r2wu5q4y%@%yuplp+m!bdq9of8wy50(=jw0-=_u@qk!@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://budgetly-1124a5b013b0.herokuapp.com/']
 
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['https://budgetly-1124a5b013b0.herokuapp.com/']
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 AUTH_USER_MODEL = 'auth.User'
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'budgetlyapp.urls'
