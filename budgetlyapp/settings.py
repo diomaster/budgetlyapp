@@ -25,11 +25,13 @@ SECRET_KEY = 'django-insecure-1v8l3=r2wu5q4y%@%yuplp+m!bdq9of8wy50(=jw0-=_u@qk!@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['budgetly-1124a5b013b0.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / '/static/'
+
 
 AUTH_USER_MODEL = 'auth.User'
 
