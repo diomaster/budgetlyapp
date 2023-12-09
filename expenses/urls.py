@@ -10,7 +10,7 @@ from .views import (
 app_name = 'expenses'
 
 urlpatterns = [
-    path('budget/login/', login_view, name='login'),
+    path('', login_view, name='login'),
     path('budget/category/', category_view, name='expense_list'),
     path('budget/logout/', logout_view, name='logout'),
     path('budget/profile/', profile_view, name='profile'),
