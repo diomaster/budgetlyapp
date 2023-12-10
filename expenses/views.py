@@ -33,7 +33,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Logout is successful Thanks for using Budgetly')
-    return redirect('budget/profile.html')
+    return redirect('budget/login.html')
 
 def register_view(request):
     if request.method == 'POST':
