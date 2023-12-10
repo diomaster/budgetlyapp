@@ -29,9 +29,9 @@ ALLOWED_HOSTS = ['budgetly-1124a5b013b0.herokuapp.com']
 
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / '/static/'
 
+STATIC_HOST = os.environ.get("DJANGO_STATIC_HOST", "")
+STATIC_URL = STATIC_HOST + "/static/"
 
 
 AUTH_USER_MODEL = 'auth.User'
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    "whitenoise.runserver_nostatic",
     #'django.contrib.staticfiles',
 ]
 
@@ -56,9 +57,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
-
+STORAGES = {
+    # ...
+    "static": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 ROOT_URLCONF = 'budgetlyapp.urls'
 
