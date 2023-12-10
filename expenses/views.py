@@ -42,11 +42,15 @@ def register_view(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
 
-            # Check if the user with the same username or email already exists
             if AccountInfo.objects.filter(username=username).exists() or AccountInfo.objects.filter(email=email).exists():
                 messages.error(request, 'Username or email already exists.')
             else:
-                form.save()
+                
+                account_info = AccountInfo(username=username, email=email)
+                
+                account_info.set_password(form.cleaned_data.get('password1'))
+                account_info.save()
+
                 messages.success(request, f'Account successfully created. Welcome, {username}.')
                 return redirect('expenses:profile')
         else:
