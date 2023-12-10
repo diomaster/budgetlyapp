@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    "whitenoise.runserver_nostatic",
+    'whitenoise.runserver_nostatic',
     #'django.contrib.staticfiles',
 ]
 
@@ -145,7 +145,7 @@ USE_TZ = True
 
 
 
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Default primary key field type
