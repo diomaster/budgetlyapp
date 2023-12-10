@@ -7,7 +7,7 @@
     </div>
     <div class="nav-links" id="navLinks">
         <a href="#" class="close-nav" onclick="toggleMenu()">×</a>
-        <a href="{% url 'expenses:expense_list' %}">Home</a>
+        <a href="{% url 'expenses:category' %}">Home</a>
         <a href="{% url 'expenses:transactions' %}">Transactions</a>
         <a href="{% url 'expenses:reports' %}">Reports</a>
         <a href="{% url 'expenses:profile' %}">Profile</a>
@@ -17,7 +17,7 @@
 </nav>
 <!-- Sub-navigation menu -->
 <div class="sub-nav">
-    <a href="{% url 'expenses:expense_list' %}" {% if request.resolver_match.url_name == 'expense_list' %}class="active"{% endif %}>Category</a>
+    <a href="{% url 'expenses:category' %}" {% if request.resolver_match.url_name == 'category' %}class="active"{% endif %}>Category</a>
     <a href="{% url 'expenses:transactions' %}" {% if request.resolver_match.url_name == 'transactions' %}class="active"{% endif %}>Transactions</a>
     <a href="{% url 'expenses:reports' %}" {% if request.resolver_match.url_name == 'reports' %}class="active"{% endif %}>Reports</a>
   </div>

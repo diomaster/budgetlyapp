@@ -6,12 +6,13 @@ from .views import (
     reports_view, transactions_view,
 )
 
+
 app_name = 'expenses'
 
 urlpatterns = [
-    path('budget/login/', login_view, name='login'),
-    path('budget/category/', category_view, name='expense_list'),
-    path('budget/logout/', logout_view, name='logout'),
+    path('', login_view, name='login'),
+    path('budget/category/', category_view, name='category'),
+    path('', logout_view, name='logout'),
     path('budget/profile/', profile_view, name='profile'),
     path('budget/Register/', register_view, name='register'),
     path('budget/addcategory/', add_category_view, name='add_category'),
@@ -22,3 +23,4 @@ urlpatterns = [
     path('budget/reports/', reports_view, name='reports'),
     path('budget/transactions/', transactions_view, name='transactions'),
 ]
+

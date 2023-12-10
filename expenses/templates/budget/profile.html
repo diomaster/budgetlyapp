@@ -47,7 +47,7 @@ align-items: center; margin-top: 3rem; ">
 justify-content: center;
 align-items: center; margin-top: 3rem; "><h1 class="profile-name">User: {{request.user}}  </h1></div>
 {% else %}
-<a href="{% url 'login' %}"><h1 style="  display: flex;
+<a href="{% url '' %}"><h1 style="  display: flex;
     justify-content: center;
     align-items: center; margin-top: 3rem; ">login</h1></a>
 {% endif %}
@@ -133,7 +133,7 @@ align-items: center; margin-top: 3rem; "><h1 class="profile-name">User: {{reques
 <!--LOGOUT BUTTON-->
 
     <div class="category-add-item-button-container" style=" margin-top: 2rem; ">
-        <a href="#" class="category-add-item-button-link">
+        <a href="{% url 'expenses:logout' %}" class="category-add-item-button-link">
             <p class="category-add-item-button-text">Log Out</p>
         </a>
     </div>

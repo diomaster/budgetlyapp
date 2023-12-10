@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
+from pathlib import Path, os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,10 +25,17 @@ SECRET_KEY = 'django-insecure-1v8l3=r2wu5q4y%@%yuplp+m!bdq9of8wy50(=jw0-=_u@qk!@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['budgetly-1124a5b013b0.herokuapp.com']
 
-STATIC_URL = '/static/'
 
+
+
+STATIC_HOST = os.environ.get("DJANGO_STATIC_HOST", "")
+STATIC_URL = STATIC_HOST + "/static/"
+
+
+AUTH_USER_MODEL = 'auth.User'
+AUTH_USER_MODEL = 'expenses.AccountInfo'
 
 # Application definition
 
@@ -39,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "whitenoise.runserver_nostatic",
+    #'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +58,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
+
+STORAGES = {
+    # ...
+    "static": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 ROOT_URLCONF = 'budgetlyapp.urls'
 
@@ -70,6 +86,11 @@ TEMPLATES = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
 WSGI_APPLICATION = 'budgetlyapp.wsgi.application'
 
 
@@ -83,6 +104,9 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -118,7 +142,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+
+
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
