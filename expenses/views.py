@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.db.models import Sum
@@ -97,25 +96,25 @@ def add_transaction_view(request):
     return render(request, 'budget/addtransaction.html', {'form': form})
 
 def category_view(request):
-    categories = Category.objects.all()
-    items = Item.objects.all() 
+    categories = Category.objects.filter(user=request.user)
+    items = Item.objects.filter(category__user=request.user) 
     return render(request, 'budget/category.html', {'categories': categories, 'items': items})
 
 def edit_category_view(request, category_id):
-    category = Category.objects.get(pk=category_id)
-
+    category = get_object_or_404(Category, id=category_id)
+    
     if request.method == 'POST':
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
             form.save()
-            return redirect('expenses:category')    
+            return redirect('expenses:categories') 
     else:
         form = CategoryForm(instance=category)
     return render(request, 'budget/editcategory.html', {'form': form, 'category': category})
 
 def edit_transaction_view(request, transaction_id):
-    transaction = Transaction.objects.get(pk=transaction_id)
-
+    transaction = get_object_or_404(Transaction, id=transaction_id)
+    
     if request.method == 'POST':
         form = TransactionForm(request.POST, instance=transaction)
         if form.is_valid():
@@ -140,7 +139,7 @@ def reports_view(request):
 
 
 def transactions_view(request):
-    transactions = Transaction.objects.all()
+    transactions = Transaction.objects.filter(user=request.user)
     return render(request, 'budget/transactions.html', {'transactions': transactions})
 
 

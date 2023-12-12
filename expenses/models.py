@@ -53,7 +53,7 @@ class AccountInfo(AbstractBaseUser, PermissionsMixin):
 class Category(models.Model):   
     name = models.CharField(max_length=100)
 
-    def str(self):
+    def __str__(self):
         return self.name
     
 class Item(models.Model):
@@ -62,7 +62,7 @@ class Item(models.Model):
     planned = models.FloatField(max_length=15)
     received = models.FloatField(max_length=15)
 
-    def str(self):
+    def __str__(self):
         return self.name
     
 
@@ -74,6 +74,5 @@ class Transaction(models.Model):
     item = models.ForeignKey('Item', on_delete=models.CASCADE)
     
 
-    def str(self):
+    def __str__(self):
         return self.category
-

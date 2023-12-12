@@ -3,7 +3,7 @@ from .views import (
     login_view, logout_view, profile_view, register_view,
     add_category_view, add_item_view, add_transaction_view,
     category_view, edit_category_view,  edit_transaction_view,
-    reports_view, transactions_view,
+    reports_view, transactions_view, 
 )
 
 

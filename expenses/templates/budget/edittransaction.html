@@ -1,6 +1,15 @@
 {% extends "../base/base.html" %}
-{% csrf_token %}
-
+{% load static %}
 {% block template %}
-<!--CODE HERE-->
+{% include "../base/navbar.html" %}
+<div class="edit-transaction-container">
+    <div class="form-header">
+        <h2>Edit Transaction</h2>
+    </div>
+    <form method="post" action="{% url 'expenses:edit_transaction' transaction_id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
 {% endblock %}
