@@ -75,9 +75,4 @@ class Transaction(models.Model):
     
 
     def __str__(self):
-<<<<<<< HEAD
         return self.category
-=======
-        return self.category
-
->>>>>>> 933430c99f933344a2ec4a9619c0bb809448b439

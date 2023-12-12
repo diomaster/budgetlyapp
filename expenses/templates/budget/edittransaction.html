@@ -1,16 +1,6 @@
 {% extends "../base/base.html" %}
 {% load static %}
 {% block template %}
-<<<<<<< HEAD
-{% include "../base/navbar.html" %}
-<div class="edit-transaction-container">
-    <div class="form-header">
-        <h2>Edit Transaction</h2>
-    </div>
-    <form method="post" action="{% url 'expenses:edit_transaction' transaction_id %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-=======
 <div class="add-transaction-container">
     <div class="form-header">
         <h2>Edit Transaction</h2>
@@ -29,7 +19,6 @@
               </div>
             {% endfor %}
           </div>
->>>>>>> 933430c99f933344a2ec4a9619c0bb809448b439
         <button type="submit">Submit</button>
     </form>
 </div>
