@@ -34,6 +34,7 @@ STATIC_HOST = os.environ.get("DJANGO_STATIC_HOST", "")
 STATIC_URL = STATIC_HOST + "/static/"
 
 
+
 AUTH_USER_MODEL = 'auth.User'
 AUTH_USER_MODEL = 'expenses.AccountInfo'
 

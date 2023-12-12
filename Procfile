@@ -1,1 +1,0 @@
-web: gunicorn budgetlyapp.wsgi --log-file -
