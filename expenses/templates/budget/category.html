@@ -13,8 +13,8 @@
 <div class="category-card-container">
     <div class="category-card-top-section">
         <p class="category-card-title-text">{{ category.name }}</p>
-        <a href="#">
-            <img src="{% static 'expenses/images/trash.svg' %}">
+        <a href="{% url 'expenses:edit_category' category_id=category.id %}">
+            <img src="{% static 'expenses/images/edit.svg' %}">
         </a>
     </div>
     <div class="category-card-table-info">
@@ -31,7 +31,7 @@
                 <div class="table-cell">{{i.planned}}</div>
                 <div class="table-cell">{{i.received}}</div>
                 <div class="table-cell">        
-                    <a href="{% url 'expenses:edit_category %}">
+                    <a href="{% url 'expenses:edit_item' item_id=i.id %}">
                         <img src="{% static 'expenses/images/edit.svg' %}">
                     </a>
                 </div>

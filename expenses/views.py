@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.db.models import Sum
-from .models import Transaction, Category, Report, AccountInfo, Item
+from .models import Transaction, Category, AccountInfo, Item
 from .forms import RegistrationForm, TransactionForm, CategoryForm, ItemForm, LoginForm
 # Create your views here.
 
@@ -84,21 +84,37 @@ def add_item_view(request):
         form = ItemForm()
     return render(request, 'budget/additem.html', {'form': form})
 
+
+def edit_item_view(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+
+    if request.method == 'POST':
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('expenses:category')
+        else:
+            return render(request, 'budget/additem.html', {'form': form})
+    else:
+        form = ItemForm(instance=item) 
+    return render(request, 'budget/additem.html', {'form': form})
+
 def add_transaction_view(request):
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Transaction added successfully!')
-            return redirect('expenses:transactions')  # Make sure 'transactions_view' is the name of the URL pattern where you list transactions
+            return redirect('expenses:transactions')  
     else:
         form = TransactionForm()
     return render(request, 'budget/addtransaction.html', {'form': form})
 
 def category_view(request):
-    categories = Category.objects.filter(user=request.user)
-    items = Item.objects.filter(category__user=request.user) 
+    categories = Category.objects.filter()
+    items = Item.objects.filter()
     return render(request, 'budget/category.html', {'categories': categories, 'items': items})
+
 
 def edit_category_view(request, category_id):
     category = get_object_or_404(Category, id=category_id)
@@ -107,7 +123,7 @@ def edit_category_view(request, category_id):
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
             form.save()
-            return redirect('expenses:categories') 
+            return redirect('expenses:category') 
     else:
         form = CategoryForm(instance=category)
     return render(request, 'budget/editcategory.html', {'form': form, 'category': category})
@@ -125,6 +141,19 @@ def edit_transaction_view(request, transaction_id):
 
     return render(request, 'budget/edittransaction.html', {'form': form, 'transaction': transaction})
 
+def edit_item_view(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    
+    if request.method == 'POST':
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('expenses:category')  # Adjust the redirect URL as needed
+    else:
+        form = ItemForm(instance=item)
+
+    return render(request, 'budget/edititem.html', {'form': form, 'item': item})
+
 def reports_view(request):
     
     transaction_total = Transaction.objects.aggregate(total_expenses=Sum('amount'))['total_expenses'] or 0
@@ -139,7 +168,7 @@ def reports_view(request):
 
 
 def transactions_view(request):
-    transactions = Transaction.objects.filter(user=request.user)
+    transactions = Transaction.objects.filter()
     return render(request, 'budget/transactions.html', {'transactions': transactions})
 
 

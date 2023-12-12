@@ -19,7 +19,6 @@
             <div class="table-cell">Description</div>
             <div class="table-cell">Category</div>
             <div class="table-cell">Amount</div>
-            
         </div>
         <hr class="horizontal-rule">
         {% for transaction in transactions %}
@@ -28,6 +27,11 @@
             <div class="table-cell">{{ transaction.description }}</div>
             <div class="table-cell">{{ transaction.category.name }}</div>
             <div class="table-cell">${{ transaction.amount }}</div>
+            <div class="table-cell">        
+                <a href="{% url 'expenses:edit_transaction' transaction_id=transaction.id %}">
+                    <img src="{% static 'expenses/images/edit.svg' %}">
+                </a>
+            </div>
         </div>
         {% empty %}
         <div class="transaction-row">

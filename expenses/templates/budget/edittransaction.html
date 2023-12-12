@@ -5,7 +5,7 @@
     <div class="form-header">
         <h2>Edit Transaction</h2>
     </div>
-    <form method="post" action="{% url 'expenses:edit_transaction' %}">
+    <form method="post" action="{% url 'expenses:edit_transaction' transaction_id=transaction.id %}">
         {% csrf_token %}
         <div class="form-body">
             {% for field in form %}
